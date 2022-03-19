@@ -8,6 +8,9 @@ const message = message => {
     document.querySelector('.message').textContent = message
 }
 
+const textScore = text => {
+    document.querySelector('.score').textContent = text
+}
 let score = 20
 
 document.querySelector('.check').addEventListener('click', () => {
@@ -21,18 +24,18 @@ document.querySelector('.check').addEventListener('click', () => {
         if (score > 1) {
             message('📈 Too high!')
             score--
-            document.querySelector('.score').textContent = score
+            textScore(score)
         } else {
-            document.querySelector('.score').textContent = 0
+            textScore(0)
             message('😱 You lost the game!')
         }
     } else if (guess < secretNumber) {
         if (score > 1) {
             message('📉 Too low!')
             score--
-            document.querySelector('.score').textContent = score
+            textScore(score)
         } else {
-            document.querySelector('.score').textContent = 0
+            textScore(0)
             message('😱 You lost the game!')
         }
     }
