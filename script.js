@@ -2,9 +2,7 @@
 const rand = (max = 1, min = 20) => {
     return Math.floor(Math.random() * (max - min) + min)
 }
-const secretNumber = rand()
-// Jogando o número gerado pela função no display do número a ser descoberto
-document.querySelector('.number').textContent = secretNumber
+let secretNumber = rand()
 
 // Função para manipular o width do número a ser descoberto
 const secretNumberWidth = width => {
@@ -37,9 +35,9 @@ document.querySelector('.check').addEventListener('click', () => {
       // Quando o player ganhar
     } else if (guess === secretNumber) {
         message('👏 Correct Number!')
-
         bgColor('#60b347')
         secretNumberWidth('30rem')
+        document.querySelector('.number').textContent = secretNumber
 
       // Quando o palpite é muito alto  
     } else if (guess > secretNumber) {
@@ -69,7 +67,9 @@ document.querySelector('.check').addEventListener('click', () => {
 document.querySelector('.again').addEventListener('click', () => {
     textScore(20)
     bgColor('#222')
+    secretNumber = rand()
     secretNumberWidth('15rem')
     message('Start guessing...')
     document.querySelector('.guess').value = ''
+    document.querySelector('.number').textContent = '?'
 })
