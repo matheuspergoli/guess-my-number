@@ -3,11 +3,12 @@ const rand = (max = 1, min = 20) => {
     return Math.floor(Math.random() * (max - min) + min)
 }
 const secretNumber = rand()
+// Jogando o número gerado pela função no display do número a ser descoberto
 document.querySelector('.number').textContent = secretNumber
 
-// Função para poder manipular o width do número a ser descoberto
-const secretNumberWidth = style => {
-    document.querySelector('.number').style.width = style
+// Função para manipular o width do número a ser descoberto
+const secretNumberWidth = width => {
+    document.querySelector('.number').style.width = width
 }
 
 // Função para mandar uma mensagem para o player de vitória ou derrota ou erro
@@ -15,7 +16,7 @@ const message = message => {
     document.querySelector('.message').textContent = message
 }
 
-// Função para poder manipular o background-color do body
+// Função para manipular o background-color do body
 const bgColor = color => {
     document.querySelector('body').style.backgroundColor = color
 }
@@ -64,7 +65,7 @@ document.querySelector('.check').addEventListener('click', () => {
     }
 })
 
-// Criando funcionalidade pra jogar de novo, resetando todos os valores
+// Criando funcionalidade para jogar de novo, resetando todos os valores
 document.querySelector('.again').addEventListener('click', () => {
     textScore(20)
     bgColor('#222')
