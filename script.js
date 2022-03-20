@@ -65,7 +65,8 @@ document.querySelector('.check').addEventListener('click', () => {
 
 // Criando funcionalidade para jogar de novo, resetando todos os valores
 document.querySelector('.again').addEventListener('click', () => {
-    textScore(20)
+    score = 20
+    textScore(score)
     bgColor('#222')
     secretNumber = rand()
     secretNumberWidth('15rem')
