@@ -1,13 +1,26 @@
-const rand = (max = 1, min = 21) => {
+// Função para gerar um número aleatório entre 1 e 20
+const rand = (max = 1, min = 20) => {
     return Math.floor(Math.random() * (max - min) + min)
 }
 const secretNumber = rand()
 document.querySelector('.number').textContent = secretNumber
 
+// Função para poder manipular o width do número a ser descoberto
+const secretNumberWidth = style => {
+    document.querySelector('.number').style.width = style
+}
+
+// Função para mandar uma mensagem para o player de vitória ou derrota ou erro
 const message = message => {
     document.querySelector('.message').textContent = message
 }
 
+// Função para poder manipular o background-color do body
+const bgColor = color => {
+    document.querySelector('body').style.backgroundColor = color
+}
+
+// Função para mostrar o score do player
 const textScore = text => {
     document.querySelector('.score').textContent = text
 }
@@ -16,18 +29,18 @@ let score = 20
 document.querySelector('.check').addEventListener('click', () => {
     const guess = Number(document.querySelector('.guess').value)
 
-    // When there is no input
+    // Quando não tiver nada no input
     if (!guess) {
         message('⛔ No number!')
 
-      // When player wins  
+      // Quando o player ganhar
     } else if (guess === secretNumber) {
         message('👏 Correct Number!')
 
-        document.querySelector('body').style.backgroundColor = '#60b347'
-        document.querySelector('.number').style.width = '30rem'
+        bgColor('#60b347')
+        secretNumberWidth('30rem')
 
-      // When guess is to high  
+      // Quando o palpite é muito alto  
     } else if (guess > secretNumber) {
         if (score > 1) {
             message('📈 Too high!')
@@ -38,7 +51,7 @@ document.querySelector('.check').addEventListener('click', () => {
             message('😱 You lost the game!')
         }
 
-      // When guess is too low  
+      // Quando o palpite é muito baixo  
     } else if (guess < secretNumber) {
         if (score > 1) {
             message('📉 Too low!')
@@ -49,4 +62,13 @@ document.querySelector('.check').addEventListener('click', () => {
             message('😱 You lost the game!')
         }
     }
+})
+
+// Criando funcionalidade pra jogar de novo, resetando todos os valores
+document.querySelector('.again').addEventListener('click', () => {
+    textScore(20)
+    bgColor('#222')
+    secretNumberWidth('15rem')
+    message('Start guessing...')
+    document.querySelector('.guess').value = ''
 })
