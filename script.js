@@ -25,6 +25,14 @@ const textScore = text => {
 }
 let score = 20
 
+// Função para salvar o highscore do player
+const highscore = () => {
+    const el = document.querySelector('.highscore')
+    if (el.textContent < score) {
+        el.textContent = score
+    }
+}
+
 document.querySelector('.check').addEventListener('click', () => {
     const guess = Number(document.querySelector('.guess').value)
 
@@ -34,6 +42,7 @@ document.querySelector('.check').addEventListener('click', () => {
 
       // Quando o player ganhar
     } else if (guess === secretNumber) {
+        highscore()
         message('👏 Correct Number!')
         bgColor('#60b347')
         secretNumberWidth('30rem')
